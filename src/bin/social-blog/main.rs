@@ -4,10 +4,6 @@ use social_blog::blog_server::{Blog, BlogServer};
 use social_blog::{CreatePageRequest, CreatePageResponse};
 use uuid::Uuid;
 
-pub mod social_blog {
-    tonic::include_proto!("social_blog");
-}
-
 #[derive(Default)]
 pub struct BlogService {}
 
