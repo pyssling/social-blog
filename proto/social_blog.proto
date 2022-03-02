@@ -1,4 +1,4 @@
-// Copyright 2015 gRPC authors.
+// Copyright 2022 Nils Carlson
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,24 +14,25 @@
 
 syntax = "proto3";
 
-option java_multiple_files = true;
-option java_package = "io.grpc.examples.helloworld";
-option java_outer_classname = "HelloWorldProto";
+package social_blog;
 
-package helloworld;
-
-// The greeting service definition.
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+// Blog entry service:
+// New pages, new entries, new comments.
+service Blog {
+  // Create a new blog page
+  rpc CreatePage (CreatePageRequest) returns (CreatePageResponse) {}
 }
 
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
+// The blog page creation request
+message CreatePageRequest {
+  string title = 1;
 }
 
-// The response message containing the greetings
-message HelloReply {
-  string message = 1;
+// Blog creation response
+message CreatePageResponse {
+  Uuid page_id = 1;
+}
+
+message Uuid {
+  string id = 1;
 }
