@@ -14,25 +14,44 @@
 
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto"; 
+
 package social_blog;
 
 // Blog entry service:
 // New pages, new entries, new comments.
 service Blog {
   // Create a new blog page
-  rpc CreatePage (CreatePageRequest) returns (CreatePageResponse) {}
+  //rpc CreatePage (CreatePageRequest) returns (CreatePageResponse) {}
+
+  rpc CreateBlogEntry (CreateBlogEntryRequest) returns (CreateBlogEntryResponse) {}
 }
 
-// The blog page creation request
 message CreatePageRequest {
   string title = 1;
 }
 
-// Blog creation response
 message CreatePageResponse {
   Uuid page_id = 1;
 }
 
+message CreateBlogEntryRequest {
+  string title = 1;
+  string contents = 2;
+  ContentFormat contents_format = 3; 
+  google.protobuf.Timestamp timestamp = 4;
+}
+
+message CreateBlogEntryResponse {
+  Uuid page_id = 1;
+}
+
+// Helper messages
+
 message Uuid {
   string id = 1;
+}
+
+enum ContentFormat {
+  MARKDOWN = 0;
 }
