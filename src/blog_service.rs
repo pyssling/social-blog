@@ -31,9 +31,9 @@ impl Blog for BlogService {
             _ => return Err(Status::invalid_argument(format!("Unknown contents format: {}", proto.contents_format)))
         };
 
-        let blogEntry = crate::BlogEntry::new( proto.title, proto.contents,  contents_format, timestamp );
+        let blog_entry = crate::BlogEntry::new( proto.title, proto.contents,  contents_format, timestamp );
 
-        crate::write_blog_entry(blogEntry);
+        crate::blog_entry_to_json(blog_entry);
 
         let page_uuid = crate::Uuid {
             id: Uuid::new_v4().to_string(),
