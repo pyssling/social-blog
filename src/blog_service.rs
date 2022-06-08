@@ -1,12 +1,9 @@
-use std::ptr::NonNull;
-
 use tonic::{Request, Response, Status};
 
 use crate::blog_server::Blog;
 use crate::{CreateBlogEntryRequest, CreateBlogEntryResponse, ContentsFormat as ProtoContentsFormat};
-use prost_types::Timestamp;
 use uuid::Uuid;
-use chrono::{NaiveDateTime, Utc, Date, NaiveDate};
+use chrono::{NaiveDateTime};
 
 #[derive(Default)]
 pub struct BlogService {}
